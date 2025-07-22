@@ -1,0 +1,25 @@
+name: TrueNASAdmin
+options:
+  bundleIdPrefix: com.yourcompany
+  deploymentTarget:
+    iOS: 16.0
+  xcodeVersion: "16.0"
+targets:
+  TrueNASAdmin:
+    type: application
+    platform: iOS
+    sources:
+      - path: TrueNASAdmin
+    info:
+      path: TrueNASAdmin/Info.plist
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.yourcompany.TrueNASAdmin
+        CODE_SIGN_STYLE: Manual
+        SWIFT_VERSION: 5.0
+        INFOPLIST_FILE: TrueNASAdmin/Info.plist
+        IPHONEOS_DEPLOYMENT_TARGET: 16.0
+    scheme:
+      build:
+        targets:
+          TrueNASAdmin: all
