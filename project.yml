@@ -1,25 +1,39 @@
 name: TrueNASAdmin
 options:
-  bundleIdPrefix: com.yourcompany
+  usesTabs: false
+  indentWidth: 4
+  tabWidth: 4
   deploymentTarget:
-    iOS: 16.0
-  xcodeVersion: "16.0"
+    iOS: 17.0
+configs:
+  Debug: debug
+  Release: release
+packages: {}
+schemes:
+  TrueNASAdmin:
+    build:
+      targets:
+        TrueNASAdmin: all
+    test:
+      targets:
+        TrueNASAdminTests: [test]
 targets:
   TrueNASAdmin:
     type: application
     platform: iOS
     sources:
-      - path: TrueNASAdmin
-    info:
-      path: TrueNASAdmin/Info.plist
+      - path: Sources
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.crazyp.TrueNASAdmin
-        CODE_SIGN_STYLE: Manual
+        INFOPLIST_FILE: Sources/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.TrueNASAdmin
+        CURRENT_PROJECT_VERSION: 1
+        MARKETING_VERSION: 1.0
         SWIFT_VERSION: 5.0
-        INFOPLIST_FILE: TrueNASAdmin/Info.plist
-        IPHONEOS_DEPLOYMENT_TARGET: 16.0
-    scheme:
-      build:
-        targets:
-          TrueNASAdmin: all
+  TrueNASAdminTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: Tests
+    dependencies:
+      - target: TrueNASAdmin
