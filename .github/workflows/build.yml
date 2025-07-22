@@ -1,4 +1,4 @@
-name: Build iOS App
+name: Build Unsigned iOS App
 
 on:
   push:
@@ -20,23 +20,28 @@ jobs:
       - name: Set up Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '16.0'  # Adjust to latest as of 2025
+          xcode-version: '16.0'  # Adjust if needed for latest in 2025
 
-      - name: Import Certificate
-        uses: apple-actions/import-codesign-certs@v2
-        with:
-          p12-file-base64: ${{ secrets.APP_CERTIFICATE_BASE64 }}
-          p12-password: ${{ secrets.APP_CERTIFICATE_PASSWORD }}
-
-      - name: Build and Archive
+      - name: Build Unsigned App
         run: |
-          xcodebuild -project TrueNASAdmin.xcodeproj -scheme TrueNASAdmin -configuration Release -archivePath ./TrueNASAdmin.xcarchive archive
-          xcodebuild -exportArchive -archivePath ./TrueNASAdmin.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath ./output
+          xcodebuild build -project TrueNASAdmin.xcodeproj \
+            -scheme TrueNASAdmin \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath build \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Package Unsigned IPA
+        run: |
+          mkdir -p output/Payload
+          cp -r build/Build/Products/Release-iphoneos/TrueNASAdmin.app output/Payload/
+          cd output
+          zip -r TrueNASAdmin-unsigned.ipa Payload
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: app-ipa
-          path: output/TrueNASAdmin.ipa
-
-      # Optional: Add TestFlight upload if you have API keys
+          name: unsigned-ipa
+          path: output/TrueNASAdmin-unsigned.ipa
