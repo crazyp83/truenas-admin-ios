@@ -20,23 +20,40 @@ jobs:
       - name: Set up Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '16.0'  # Adjust if needed for latest in 2025
+          xcode-version: '16.0'  # Adjust for latest if needed (e.g., 16.1 in late 2025)
 
-      - name: Build Unsigned App
+      - name: Create Self-Signed Certificate
+        run: |
+          openssl req -x509 -newkey rsa:2048 -keyout selfsigned.key -out selfsigned.crt -days 365 -nodes -subj "/CN=SelfSigned"
+          openssl pkcs12 -export -out selfsigned.p12 -inkey selfsigned.key -in selfsigned.crt -password pass:password
+          security create-keychain -p password build.keychain
+          security default-keychain -s build.keychain
+          security unlock-keychain -p password build.keychain
+          echo "SELF_SIGNED_CERT_BASE64=$(base64 -i selfsigned.p12)" >> $GITHUB_ENV
+          security import selfsigned.p12 -k build.keychain -P password -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k password build.keychain
+          security find-identity -v -p codesign
+
+      - name: Build App with Temporary Signing
         run: |
           xcodebuild build -project TrueNASAdmin.xcodeproj \
             -scheme TrueNASAdmin \
             -configuration Release \
             -sdk iphoneos \
             -derivedDataPath build \
-            CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGNING_ALLOWED=NO
+            CODE_SIGN_IDENTITY="SelfSigned" \
+            CODE_SIGN_STYLE=Manual \
+            PROVISIONING_PROFILE="" \
+            OTHER_CODE_SIGN_FLAGS="--keychain build.keychain"
 
-      - name: Package Unsigned IPA
+      - name: Strip Signature and Package Unsigned IPA
         run: |
+          APP_PATH="build/Build/Products/Release-iphoneos/TrueNASAdmin.app"
+          codesign --remove-signature "$APP_PATH"
+          # Remove any leftover provisioning or entitlements if present
+          rm -f "$APP_PATH/embedded.mobileprovision"
           mkdir -p output/Payload
-          cp -r build/Build/Products/Release-iphoneos/TrueNASAdmin.app output/Payload/
+          cp -r "$APP_PATH" output/Payload/
           cd output
           zip -r TrueNASAdmin-unsigned.ipa Payload
 
