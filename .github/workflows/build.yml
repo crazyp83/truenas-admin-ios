@@ -20,7 +20,7 @@ jobs:
       - name: Set up Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '16.0'  # Adjust for latest if needed (e.g., 16.1 in late 2025)
+          xcode-version: '16.2'  # Updated to match available version on runners (16.2.0 as of July 2025)
 
       - name: Create Self-Signed Certificate
         run: |
