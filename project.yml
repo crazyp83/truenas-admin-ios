@@ -14,7 +14,7 @@ targets:
       path: TrueNASAdmin/Info.plist
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.yourcompany.TrueNASAdmin
+        PRODUCT_BUNDLE_IDENTIFIER: com.crazyp.TrueNASAdmin
         CODE_SIGN_STYLE: Manual
         SWIFT_VERSION: 5.0
         INFOPLIST_FILE: TrueNASAdmin/Info.plist
