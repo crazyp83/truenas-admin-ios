@@ -1,0 +1,42 @@
+name: Build iOS App
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Set up Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '16.0'  # Adjust to latest as of 2025
+
+      - name: Import Certificate
+        uses: apple-actions/import-codesign-certs@v2
+        with:
+          p12-file-base64: ${{ secrets.APP_CERTIFICATE_BASE64 }}
+          p12-password: ${{ secrets.APP_CERTIFICATE_PASSWORD }}
+
+      - name: Build and Archive
+        run: |
+          xcodebuild -project TrueNASAdmin.xcodeproj -scheme TrueNASAdmin -configuration Release -archivePath ./TrueNASAdmin.xcarchive archive
+          xcodebuild -exportArchive -archivePath ./TrueNASAdmin.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath ./output
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-ipa
+          path: output/TrueNASAdmin.ipa
+
+      # Optional: Add TestFlight upload if you have API keys
