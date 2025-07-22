@@ -7,7 +7,7 @@ workflows:
         XCODE_VERSION: 15.4  # Choose latest
       ios_signing:
         distribution_type: development  # Or app_store for release
-        bundle_id: com.yourcompany.TrueNASAdmin
+        bundle_id: com.crazyp.TrueNASAdmin
     scripts:
       - name: Build iOS app
         script: xcodebuild build -project TrueNASAdmin.xcodeproj -scheme TrueNASAdmin -sdk iphoneos -configuration Release
@@ -16,4 +16,4 @@ workflows:
     publishing:
       email:
         recipients:
-          - your@email.com
+          - crazyp@icloud.com
