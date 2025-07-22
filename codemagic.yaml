@@ -1,19 +1,46 @@
 workflows:
   ios-workflow:
-    name: iOS Build
+    name: TrueNAS Admin iOS Build
     max_build_duration: 60
     environment:
       vars:
-        XCODE_VERSION: 15.4  # Choose latest
+        XCODE_VERSION: "16.0"
+        BUNDLE_ID: "com.yourcompany.TrueNASAdmin"
+      xcode: latest
       ios_signing:
-        distribution_type: development  # Or app_store for release
-        bundle_id: com.crazyp.TrueNASAdmin
+        distribution_type: development
+        bundle_identifier: $BUNDLE_ID
     scripts:
-      - name: Build iOS app
-        script: xcodebuild build -project TrueNASAdmin.xcodeproj -scheme TrueNASAdmin -sdk iphoneos -configuration Release
+      - name: Install XcodeGen
+        script: |
+          brew install xcodegen
+      - name: Generate Xcode Project
+        script: |
+          xcodegen generate --spec project.yml
+      - name: Build iOS App
+        script: |
+          xcodebuild build \
+            -project TrueNASAdmin.xcodeproj \
+            -scheme TrueNASAdmin \
+            -sdk iphoneos \
+            -configuration Release \
+            CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY="${CM_CODE_SIGNING_IDENTITY}" \
+            PROVISIONING_PROFILE_SPECIFIER="${CM_PROVISIONING_PROFILE_SPECIFIER}" \
+            -archivePath build/TrueNASAdmin.xcarchive
+      - name: Export IPA
+        script: |
+          xcodebuild -exportArchive \
+            -archivePath build/TrueNASAdmin.xcarchive \
+            -exportOptionsPlist exportOptions.plist \
+            -exportPath build/ios/ipa
     artifacts:
       - build/ios/ipa/*.ipa
+      - build/TrueNASAdmin.xcarchive
     publishing:
       email:
         recipients:
-          - crazyp@icloud.com
+          - your@email.com
+        notify:
+          success: true
+          failure: true
