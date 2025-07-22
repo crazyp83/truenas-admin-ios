@@ -1,0 +1,209 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A0000000000000000000001 /* TrueNASAdminApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000002 /* TrueNASAdminApp.swift */; };
+		1A0000000000000000000003 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000004 /* ContentView.swift */; };
+		1A0000000000000000000005 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000006 /* Info.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1A0000000000000000000002 /* TrueNASAdminApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrueNASAdminApp.swift; sourceTree = "<group>"; };
+		1A0000000000000000000004 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1A0000000000000000000006 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A0000000000000000000007 /* TrueNASAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrueNASAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1A0000000000000000000008 /* TrueNASAdmin */ = {
+			isa = PBXGroup;
+			children = (
+				1A0000000000000000000002 /* TrueNASAdminApp.swift */,
+				1A0000000000000000000004 /* ContentView.swift */,
+				1A0000000000000000000006 /* Info.plist */,
+			);
+			path = TrueNASAdmin;
+			sourceTree = "<group>";
+		};
+		1A0000000000000000000009 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1A0000000000000000000007 /* TrueNASAdmin.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1A000000000000000000000A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1A0000000000000000000000 /* TrueNASAdmin */ = {
+			isa = PBXGroup;
+			children = (
+				1A0000000000000000000008 /* TrueNASAdmin */,
+				1A0000000000000000000009 /* Products */,
+				1A000000000000000000000A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1A000000000000000000000B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A0000000000000000000001 /* TrueNASAdminApp.swift in Sources */,
+				1A0000000000000000000003 /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1A000000000000000000000C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A0000000000000000000005 /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXProject section */
+		1A000000000000000000000D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1200;
+				TargetAttributes = {
+					1A000000000000000000000E = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = 1A000000000000000000000F /* Build configuration list for PBXProject "TrueNASAdmin" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1A0000000000000000000000;
+			productRefGroup = 1A0000000000000000000009 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1A000000000000000000000E /* TrueNASAdmin */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXNativeTarget section */
+		1A000000000000000000000E /* TrueNASAdmin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A0000000000000000000010 /* Build configuration list for PBXNativeTarget "TrueNASAdmin" */;
+			buildPhases = (
+				1A000000000000000000000B /* Sources */,
+				1A000000000000000000000C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TrueNASAdmin;
+			productName = TrueNASAdmin;
+			productReference = 1A0000000000000000000007 /* TrueNASAdmin.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin XCBuildConfiguration section */
+		1A0000000000000000000011 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = ""; /* Add your Team ID in CodeMagic */
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TrueNASAdmin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.TrueNASAdmin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1A0000000000000000000012 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = ""; /* Add your Team ID in CodeMagic */
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TrueNASAdmin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.TrueNASAdmin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		1A0000000000000000000013 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.TrueNASAdmin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1A0000000000000000000014 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.TrueNASAdmin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1A000000000000000000000F /* Build configuration list for PBXProject "TrueNASAdmin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A0000000000000000000011 /* Debug */,
+				1A0000000000000000000012 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A0000000000000000000010 /* Build configuration list for PBXNativeTarget "TrueNASAdmin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A0000000000000000000013 /* Debug */,
+				1A0000000000000000000014 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1A000000000000000000000D /* Project object */;
+}
